@@ -1,0 +1,49 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.13.10",
+    "@eva-design/eva": "^2.0.0",
+    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/drawer": "^5.12.5",
+    "@react-navigation/material-top-tabs": "^5.3.15",
+    "@react-navigation/native": "^5.9.4",
+    "@react-navigation/stack": "^5.14.4",
+    "@ui-kitten/components": "^5.0.0",
+    "expo": "~40.0.0",
+    "expo-location": "^10.0.0",
+    "expo-permissions": "^10.0.0",
+    "expo-status-bar": "~1.0.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-background-task": "^0.2.1",
+    "react-native-dropdown-picker": "^4.0.9",
+    "react-native-elements": "^3.3.2",
+    "react-native-extended-stylesheet": "^0.12.0",
+    "react-native-geolocation-service": "^5.2.0",
+    "react-native-gesture-handler": "~1.8.0",
+    "react-native-html-parser": "^0.1.0",
+    "react-native-location": "^2.5.0",
+    "react-native-reanimated": "~1.13.0",
+    "react-native-safe-area-context": "3.1.9",
+    "react-native-screens": "~2.15.2",
+    "react-native-svg": "^9.13.6",
+    "react-native-tab-view": "^2.16.0",
+    "react-native-toast-message": "^1.4.9",
+    "react-native-vector-icons": "^8.1.0",
+    "react-native-web": "~0.13.12",
+    "sync-storage": "^0.4.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0"
+  },
+  "private": true
+}
