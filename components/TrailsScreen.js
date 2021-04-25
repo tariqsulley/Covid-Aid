@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import {StyleSheet, Text, View, Alert, TouchableOpacity,Button,ScrollView} from "react-native";
 import AsyncStorage from '@react-native-community/async-storage';
-
-import { ListItem, Avatar } from 'react-native-elements'
+import { ListItem, Avatar } from 'react-native-elements';
 
 const list = [
   {
@@ -13,9 +12,6 @@ const list = [
   },
 
 ]
-
-
-
 
 const data =  AsyncStorage.getItem('location')
 var location_data;
@@ -117,7 +113,7 @@ componentDidUpdate(){
       
       <View style={styles.container}>
       <ScrollView>
-      <View>
+      <View style = {styles.ListView}>
       
   {
     list.map((l, i) => (
@@ -148,6 +144,9 @@ componentDidUpdate(){
 const styles = StyleSheet.create({
   container: {
   
+  },
+  ListView:{
+    backgroundColor: 'silver'
   },
   welcome: {
    
