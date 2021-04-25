@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {registerRootComponent} from 'expo';
 import {CheckBox,Card} from 'react-native-elements'
@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Icon1 from 'react-native-vector-icons/MaterialIcons'
 import { Button } from 'react-native-elements';
 
-class DiagnosisView extends React.Component{
+class DiagnosisView extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -182,14 +182,13 @@ class DiagnosisView extends React.Component{
 }
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-
+  
   Pg0View:{
     display: 'flex',
     flexDirection: 'column'
