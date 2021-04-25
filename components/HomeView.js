@@ -12,32 +12,34 @@ var active;
 var recoveries;
 var losses;
 
-async function getData(){
-  const URL = 'https://www.worldometers.info/coronavirus/country/ghana/'
-  const response = await fetch(URL)
-  const htmlstr = await response.text()
-  const parser = new DOMParser.DOMParser()
-  const parsed = parser.parseFromString(htmlstr, 'text/html')
-  var values = parsed.getElementsByClassName('maincounter-number')
-  var values = String(values)
-  var values = values.split(/([0-9]+)/)
-  var numbers = values.map(i => parseInt(i))
-  var numbers = numbers.filter(i => isNaN(i) != true)
-  var total_cases = String(numbers[0]) + String(numbers[1])
-  var deaths = String(numbers[2])
-  var recovered = String(numbers[5]) + String( (String(numbers[6]).length == 2? "0": null) + numbers[6])
-  var active_cases = String(parseInt(total_cases) - (parseInt(deaths) + parseInt(recovered)))
-  await AsyncStorage.setItem('cases', total_cases)
-  await AsyncStorage.setItem('active', active_cases)
-  await AsyncStorage.setItem('recovered', recovered)
-  await AsyncStorage.setItem('deaths', deaths)
-  cases = await AsyncStorage.getItem('cases')
-  active = await AsyncStorage.getItem('active')
-  recoveries = await AsyncStorage.getItem('recovered')
-  losses = await AsyncStorage.getItem('deaths')
-  changevalue();
+const getData = async()=>{
+  try{
+    const URL = 'https://www.worldometers.info/coronavirus/country/ghana/'
+    const response = await fetch(URL)
+    const htmlstr = await response.text()
+    const parser = new DOMParser.DOMParser()
+    const parsed = parser.parseFromString(htmlstr, 'text/html')
+    var values = parsed.getElementsByClassName('maincounter-number')
+    var values = String(values)
+    var values = values.split(/([0-9]+)/)
+    var numbers = values.map(i => parseInt(i))
+    var numbers = numbers.filter(i => isNaN(i) != true)
+    var total_cases = String(numbers[0]) + String(numbers[1])
+    var deaths = String(numbers[2])
+    var recovered = String(numbers[5]) + String( (String(numbers[6]).length == 2? "0": null) + numbers[6])
+    var active_cases = String(parseInt(total_cases) - (parseInt(deaths) + parseInt(recovered)))
+    await AsyncStorage.setItem('cases', total_cases)
+    await AsyncStorage.setItem('active', active_cases)
+    await AsyncStorage.setItem('recovered', recovered)
+    await AsyncStorage.setItem('deaths', deaths)
+    cases = await AsyncStorage.getItem('cases')
+    active = await AsyncStorage.getItem('active')
+    recoveries = await AsyncStorage.getItem('recovered')
+    losses = await AsyncStorage.getItem('deaths')
+    changevalue();
+  } catch(e){
+  }
 }
-
 
 
 class HomeView extends Component{
@@ -49,10 +51,9 @@ class HomeView extends Component{
       active_cases: 0 ,
       recovered: 0,
       deaths: 0,
- 
-    }
+     }
     this.changevalue = this.changevalue.bind(this) 
-  
+ 
   }
 
   changevalue(){
@@ -222,8 +223,6 @@ const styles = EStyleSheet.create({
     }
   }
 })
-
-
 
 export default HomeView;
 AppRegistry.registerComponent('HomeView', () => HomeView);
