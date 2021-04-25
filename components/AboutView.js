@@ -1,11 +1,9 @@
-import * as React from 'react';
-
-import {View,Text, StyleSheet, ScrollView, Image,FlatList} from 'react-native';
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
-
+import React, {Component} from 'react';
+import {View,Text, StyleSheet, ScrollView, Image} from 'react-native';
+import {Card} from 'react-native-elements'
 
 
-class AboutView extends React.Component{
+class AboutView extends Component{
   constructor(props){
     super(props)
 
@@ -13,7 +11,7 @@ class AboutView extends React.Component{
   
   render(){
     return(
-        <View style={styles.container}>
+      <View style={styles.container}>
       <ScrollView>
       <Card>
         <Card.Title> What Are Corona Viruses? </Card.Title>
@@ -79,7 +77,6 @@ class AboutView extends React.Component{
               hand hygiene. Follow the advice provided by your local health authority. 
         </Text>
       </Card>
-
       <Card>
         <Card.Title> What Do I Do When I Come Into Contact With Someone With The Virus? </Card.Title>
         <Card.Divider/>
@@ -115,14 +112,17 @@ class AboutView extends React.Component{
       alignItems: 'center',
       justifyContent: 'center',
     },
+
     Imgs:{
       width:250,
       height: 150,
       borderRadius:2
     },
+
     Txt:{
       margin:5
     },
+
     Definition:{
       alignItems:'center',
       justifyContent: 'center',
@@ -133,6 +133,7 @@ class AboutView extends React.Component{
         width: 0,
         height: 4,
       },
+
       shadowOpacity: 0.32,
       shadowRadius: 5.46,
   
@@ -140,4 +141,5 @@ class AboutView extends React.Component{
     
     }
   });
+
 export default (AboutView);
