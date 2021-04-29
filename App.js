@@ -17,7 +17,7 @@ import HelpView from './components/HelpView.js';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-EStyleSheet.build({ // always call EStyleSheet.build() even if you don't use global variables!
+EStyleSheet.build({ 
   $textColor: '#0275d8'
 });
 const Stack = createStackNavigator();
