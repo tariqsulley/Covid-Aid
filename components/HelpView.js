@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Alert} from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon1 from 'react-native-vector-icons/Feather'
 import AsyncStorage from '@react-native-community/async-storage';
+import {CheckBox,Card} from 'react-native-elements'
+
 import {postApi} from './TrailsScreen'
 
 class HelpView extends Component{
@@ -42,7 +45,7 @@ class HelpView extends Component{
 
   ChangeNegative(){
     this.setState({
-      Negative: Math.random()
+      Positive: "No"
     })
   }
   action(){
@@ -55,16 +58,18 @@ class HelpView extends Component{
   render(){
   return(
     <View style = {styles.container}>
-    <Button title = " I have tested postive" icon ={<Icon name="coronavirus" size = {15} color="red"/>}
+    <Card containerStyle = {{padding: 40}}>
+    <Button title = " I Have Tested Postive" icon ={<Icon name="coronavirus" size = {15} color="red"/>}
       onPress = {()=> Alert.alert("Covid Status","Are you sure you have tested positive for corona virus?",[
         {text:"Yes", onPress:  this.StoreData},
         {text:"No", onPress: this.ChangeNegative}
       ])}
     />
       <Text> Positive: {this.state.Positive} </Text>
-      <Text> Negative: {this.state.Negative} </Text>
-      <Text> COunt : {this.state.count}</Text>
-      <Button title="Export Data" onPress={()=> this.state.count >= 1 ? null:this.action()}/>
+      <Text> Count : {this.state.count}</Text>
+      <Button title=" Export Data" icon = {<Icon1 name= "upload" size = {15} color="white"/>}
+      onPress={()=> this.state.count === 1 ? alert("Sorry, you can't upload data now"):this.action()}/>
+    </Card>
     </View>
     )
   }
