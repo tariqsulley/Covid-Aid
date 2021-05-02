@@ -4,39 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { ListItem, Avatar } from 'react-native-elements';
 
 
-const list = [
-  {
-    lattitude: '49.435352342',
-    img: 'https://png.pngtree.com/element_our/png/20181205/location-vector-icon-png_256682.jpg',
-    longitude: '0.324421323',
-    date: 'Tue Apr 27 17:07:22 2021'
-  },
-  {
-    lattitude: '9.435343657',
-    img: 'https://png.pngtree.com/element_our/png/20181205/location-vector-icon-png_256682.jpg',
-    longitude: '0.532447684',
-    date: 'Tue Apr 27 17:12:25 2021'
-  },
-  {
-    lattitude: '9.435323454',
-    img: 'https://png.pngtree.com/element_our/png/20181205/location-vector-icon-png_256682.jpg',
-    longitude: '0.324464456',
-    date: 'Tue Apr 27 17:17:46 2021'
-  },
-  {
-    lattitude: '9.546576534',
-    img: 'https://png.pngtree.com/element_our/png/20181205/location-vector-icon-png_256682.jpg',
-    longitude: '0.454646557',
-    date: 'Tue Apr 27 17:22:12 2021'
-  },
-  {
-    lattitude: '9.543234574',
-    img: 'https://png.pngtree.com/element_our/png/20181205/location-vector-icon-png_256682.jpg',
-    longitude: '0.467421346',
-    date: 'Tue Apr 27 17:27:22 2021'
-  },
-
-]
+const list = [ ]
 
 const z =  AsyncStorage.getItem("CovidStatus")
 
@@ -84,6 +52,7 @@ class Trails extends Component {
      coordinates: [],
      dis: [],
      df: null,
+     status: '',
      x: [],
      covidstatus: []
    }
@@ -91,19 +60,22 @@ class Trails extends Component {
    this.findCoordinates = this.findCoordinates.bind(this)
    this.StoreData = this.StoreData.bind(this)
    this.getApi = this.getApi.bind(this)
+   this.store = this.store.bind(this)
+
   }
 
 
   componentDidMount(){
-    var x = AsyncStorage.getItem('lamx')
-    this.setState({
-      dis: x
-    })
-   
+   interval = setInterval(()=>{
+     this.findCoordinates()
+   }, 10000)
+  }
+  componentWillUnmount(){
+    clearInterval(interval)
   }
   
    getApi = () => {
-    return fetch("https://36d194bbc258.ngrok.io")
+    return fetch("https://2d5a2d43ef4f.ngrok.io")
       .then((response) => response.json())
       .then((json) => {
         y = json.map(i => i.postData)
@@ -118,13 +90,28 @@ class Trails extends Component {
         var latt = flatten(latt)
         var long = flatten(long)
         var date = flatten(date)
-        alert(date)
+        var device_latt = list.map(i => i.lattitude)
+      
+        if(device_latt.length === 0 || latt.length === 0){
+          null
+        }
+        else{
+        for(var i = 0; i < device_latt.length; i++){
+          for(var j = 0; j < latt.length; j++){
+            if(Math.abs(device_latt[i] - latt[j]) < 0.01){
+              this.setState({
+                status: "contact"
+              })
+            }
+          }
+        }
+      }
         this.setState({
           x: date
         })
       })
       .catch((error) => {
-        alert("Error in retrieving api data")
+        console.log("")
       });
   }; 
 
@@ -152,11 +139,9 @@ class Trails extends Component {
       }
    }
 
-componentDidUpdate(){
-}
 
 
-  findCoordinates = () => {
+  findCoordinates = async() => {
     navigator.geolocation.getCurrentPosition(
       position => {
         const location = JSON.stringify(position);
@@ -182,6 +167,9 @@ componentDidUpdate(){
             }),1000 }
         )
         this.StoreData(cods)
+        this.store()
+        const l =  AsyncStorage.getItem('dat')
+
         var a = this.getData('lo')
         
         this.setState({
@@ -193,9 +181,18 @@ componentDidUpdate(){
     );
   };
 
+  store = async()=>{
+    try{
+      await AsyncStorage.setItem('dat', JSON.stringify(list))
+    }catch(e){
+      console.log("error")
+    }
+  }
+
   render() {
     var x = JSON.parse(JSON.stringify(data["_W"]))
     var b = JSON.parse(JSON.stringify(z["_W"]))
+    var q = JSON.parse(JSON.stringify(l["_W"]))
    
     return (
       
@@ -218,9 +215,12 @@ componentDidUpdate(){
 </View>
      <TouchableOpacity onPress={this.findCoordinates}>
           <Text style={styles.welcome}>Find My Coords?</Text>
+          <Text> Loc: {q}</Text>
           <Text>Location: {this.state.location}</Text>
-          <Text> Df: {this.state.x.map(i => i)}</Text>
-          <Text> Storage: {b}</Text>
+          <Text> status: {this.state.status} </Text>
+          {this.state.status === "contact" ? <Text> You might have contact</Text>:<Text>No possible contact</Text>}
+         {/* <Text> Df: {this.state.x.map(i => i)}</Text> 
+          <Text> Storage: {b}</Text> */}
           {/**<Button title="Test" onPress={ ()=> Alert.alert(numbers)}> </Button>**/}
 </TouchableOpacity> 
 </ScrollView>
