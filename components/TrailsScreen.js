@@ -53,7 +53,7 @@ export const postApi = () => {
   var date = list.map(i=> i.date)
   var postData = [ {"latt":lattitudes,"long":longitudes,"date":date}]
   alert("You have successfully uploaded your coordinates unto the server")
-  return fetch('https://a444511c7bac.ngrok.io', {
+  return fetch('https://6964dc3aac79.ngrok.io', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -103,19 +103,24 @@ class Trails extends Component {
   }
   
    getApi = () => {
-    return fetch("https://a444511c7bac.ngrok.io")
+    return fetch("https://36d194bbc258.ngrok.io")
       .then((response) => response.json())
       .then((json) => {
         y = json.map(i => i.postData)
         server_latt = y[0][0]["latt"]
         server_long = y[0][0]["long"]
         server_date = y[0][0]["date"]
+        var latt = json.map(i => i.postData.map(y => y.latt))
+        var long = json.map(i => i.postData.map(y => y.long))
+        var date = json.map(i => i.postData.map(y => y.date))
+        const flatten = (arr, depth = 2) =>
+        arr.reduce((a, v) => a.concat(depth > 1 && Array.isArray(v) ? flatten(v, depth - 1) : v), []);
+        var latt = flatten(latt)
+        var long = flatten(long)
+        var date = flatten(date)
+        alert(date)
         this.setState({
-          x: server_latt
-        })
-        alert(json)
-        this.setState({
-          covidstatus: z
+          x: date
         })
       })
       .catch((error) => {
