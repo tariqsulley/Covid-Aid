@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import {StyleSheet, Text, View, Alert, TouchableOpacity,Button,ScrollView} from "react-native";
+import {StyleSheet, Text, View, Alert, TouchableOpacity,Button,ScrollView,Dimensions} from "react-native";
 import AsyncStorage from '@react-native-community/async-storage';
 import { ListItem, Avatar } from 'react-native-elements';
 
 
 const list = [ ]
 
+const l =  AsyncStorage.getItem('dat')
 const z =  AsyncStorage.getItem("CovidStatus")
 
 const data =  AsyncStorage.getItem('location')
@@ -67,6 +68,7 @@ class Trails extends Component {
 
   componentDidMount(){
    interval = setInterval(()=>{
+     
      this.findCoordinates()
    }, 10000)
   }
@@ -75,7 +77,7 @@ class Trails extends Component {
   }
   
    getApi = () => {
-    return fetch("https://2d5a2d43ef4f.ngrok.io")
+    return fetch("https://0c3d36eb218c.ngrok.io")
       .then((response) => response.json())
       .then((json) => {
         y = json.map(i => i.postData)
@@ -84,7 +86,7 @@ class Trails extends Component {
         server_date = y[0][0]["date"]
         var latt = json.map(i => i.postData.map(y => y.latt))
         var long = json.map(i => i.postData.map(y => y.long))
-        var date = json.map(i => i.postData.map(y => y.date))
+      var date = json.map(i => i.postData.map(y => y.date))
         const flatten = (arr, depth = 2) =>
         arr.reduce((a, v) => a.concat(depth > 1 && Array.isArray(v) ? flatten(v, depth - 1) : v), []);
         var latt = flatten(latt)
@@ -154,10 +156,16 @@ class Trails extends Component {
         var numbers = numbers.filter(i => isNaN(i) != true)
         var time = numbers[0]
         var date = (new Date(time)).toLocaleString()
-        var lattitude = numbers[1] != 0 ? numbers[5] + "." + numbers[6]:numbers[3] + "." + numbers[4]
-        var longitude =  numbers[1] !=0 ? numbers[8] + "." + "0" + numbers[9]:numbers[5] + "." + "0" + numbers[6]
+        var lattitude = numbers.length === 10
+        ? numbers[3] + "." + numbers[4]:null || numbers.length === 15
+        ? numbers[7] + "." + numbers[8]:null || numbers.length === 12 ? numbers [6] +"." + numbers[7]:null
+        || numbers.length === 11 ? numbers[3] + "." + numbers[4]:null
+        var longitude =  numbers.length > 10 
+        ? numbers[8] + "." + numbers[9] + numbers[10]:numbers[5] + "." + "0" + numbers[6]
         var cods = [{'time':time,'lattitude':lattitude,'longitude':longitude}]
         this.getApi()
+        numbers.push(numbers.length)
+        alert(numbers)
         setTimeout( ()=>{
             list.push( {
               lattitude: lattitude,
@@ -168,8 +176,6 @@ class Trails extends Component {
         )
         this.StoreData(cods)
         this.store()
-        const l =  AsyncStorage.getItem('dat')
-
         var a = this.getData('lo')
         
         this.setState({
@@ -214,13 +220,9 @@ class Trails extends Component {
   }
 </View>
      <TouchableOpacity onPress={this.findCoordinates}>
-          <Text style={styles.welcome}>Find My Coords?</Text>
-          <Text> Loc: {q}</Text>
-          <Text>Location: {this.state.location}</Text>
-          <Text> status: {this.state.status} </Text>
-          {this.state.status === "contact" ? <Text> You might have contact</Text>:<Text>No possible contact</Text>}
-         {/* <Text> Df: {this.state.x.map(i => i)}</Text> 
-          <Text> Storage: {b}</Text> */}
+          
+          <Text> Df: {this.state.location}</Text> 
+          <Text> Storage: {b}</Text> 
           {/**<Button title="Test" onPress={ ()=> Alert.alert(numbers)}> </Button>**/}
 </TouchableOpacity> 
 </ScrollView>
