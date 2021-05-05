@@ -158,10 +158,13 @@ class Trails extends Component {
         var date = (new Date(time)).toLocaleString()
         var lattitude = numbers.length === 10
         ? numbers[3] + "." + numbers[4]:null || numbers.length === 15
-        ? numbers[7] + "." + numbers[8]:null || numbers.length === 12 ? numbers [6] +"." + numbers[7]:null
-        || numbers.length === 11 ? numbers[3] + "." + numbers[4]:null
-        var longitude =  numbers.length > 10 
-        ? numbers[8] + "." + numbers[9] + numbers[10]:numbers[5] + "." + "0" + numbers[6]
+        ? numbers[7] + "." + numbers[8]:null || numbers.length === 12 ? numbers [5] +"." + numbers[6]:null ||
+        numbers.length === 14 ? numbers[6] +"." + numbers[7]:null
+        || numbers.length === 11 ? numbers[5] + "." + numbers[6]:null
+
+        var longitude =  numbers.length === 10 
+        ? numbers[8] + "." + numbers[9] + numbers[10]:numbers[5] + "." + "0" + numbers[6] || numbers.length === 14?
+        numbers[10] + "." + numbers[11]:null
         var cods = [{'time':time,'lattitude':lattitude,'longitude':longitude}]
         this.getApi()
         numbers.push(numbers.length)
