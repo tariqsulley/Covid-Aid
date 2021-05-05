@@ -65,8 +65,8 @@ class HelpView extends Component{
         {text:"No", onPress: this.ChangeNegative}
       ])}
     />
-      <Text> Positive: {this.state.Positive} </Text>
-      <Text> Count : {this.state.count}</Text>
+      <Text>  </Text>
+      <Text> </Text>
       <Button title=" Export Data" icon = {<Icon1 name= "upload" size = {15} color="white"/>}
       onPress={()=> this.state.count === 1 ? alert("Sorry, you can't upload data now"):this.action()}/>
     </Card>
