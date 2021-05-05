@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View, Text, Image, StyleSheet,AppRegistry} from 'react-native';
+import {View, Text, Image, StyleSheet,Dimensions,AppRegistry} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import DOMParser from 'react-native-html-parser';
 import Icon from 'react-native-vector-icons/Feather';
@@ -38,6 +38,7 @@ const getData = async()=>{
     losses = await AsyncStorage.getItem('deaths')
     changevalue();
   } catch(e){
+    console.log("error")
   }
 }
 
@@ -80,7 +81,7 @@ class HomeView extends Component{
     });
   }
 
-  componentDidUpdate(){
+  componentDidMount(){
     getData();
   }
 
@@ -90,10 +91,7 @@ class HomeView extends Component{
         <View style = {styles.Design}>
 
           <View>
-           <Image style = {{position:'absolute',top:-60, right:-160,
-           paddingRight: 90,
-            width:330, height: 190
-           }}
+           <Image style ={styles.ImgStyle}
             source = {require('../assets/pandemic.jpg')}/>
           </View>
 
@@ -130,6 +128,14 @@ const styles = EStyleSheet.create({
     position: 'absolute',
     top: '70%',
     margin: 20
+  },
+  ImgStyle:{
+    position:'absolute',
+    top:-60, 
+    right:-160,
+    paddingRight: 90,
+     width: Dimensions.get('window').width,
+      height: 190
   },
 
   Design:{
@@ -172,7 +178,8 @@ const styles = EStyleSheet.create({
     borderRadius: 5,
   },
 
-  '@media (max-width: 350) or (max-height: 550)': {
+
+  '@media (min-width: 392)': {
     ButtonStyle:{
       flex:1,
       justifyContent: 'center',
@@ -180,6 +187,14 @@ const styles = EStyleSheet.create({
       position: 'absolute',
       top: '70%',
       margin: 20
+    },
+    ImgStyle:{
+      position:'absolute',
+      top:-60, 
+      right:-196,
+      paddingRight: 90,
+       width:Dimensions.get('window').width,
+        height: Dimensions.get('window').height / 3.2
     },
   
     Design:{
@@ -191,12 +206,12 @@ const styles = EStyleSheet.create({
     Statistics:{
       flex: 1,
       flexDirection: 'row',
-      padding: 20,
+      padding: 25,
       position: 'absolute',
       borderRadius: 4,
       backgroundColor: 'white',
       top: '45%',
-      right: '-77%',
+      right: '-65%',
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -209,7 +224,7 @@ const styles = EStyleSheet.create({
     },
   
     HomeStyle1:{
-      borderColor: "red",
+      borderColor: "silver",
       borderWidth: 1,
       borderRadius: 5,
       backgroundColor: 'white'
@@ -217,7 +232,7 @@ const styles = EStyleSheet.create({
   
     HomeStyle2:{
       marginLeft: '5%',
-      borderColor: "red",
+      borderColor: "silver",
       borderWidth: 1,
       borderRadius: 5,
     }
