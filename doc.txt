@@ -1,0 +1,8 @@
+a. Objective: To build a user friendly Covid-19 app that can be used for contact tracing by anonymously tracking the users’ location, 
+provide diagnostic services, provide updates on Ghana’s Covid-19 cases, and give the user a holistic view of what Covid-19 and information he/she has to know about it.
+
+b. Methodology: I plan to build this app using React Native which is an open source mobile application framework created by Facebook.
+It uses JavaScript as its programming language. I will also create a representational state transfer application programming interface that 
+I will build with Node.js( an open source development platform for executing JavaScript code server-side) and Express.js (a backend web application framework for Node.js) 
+to enable users who test positive for Covid-19 send their location data to a server for this data then to be sent to everyone who has the app for some calculations to be 
+performed to see if you have ever come into contact with the Covid-19 patient for you to be able to take the necessary precautions to the minimize the spread of the virus. 
