@@ -25,8 +25,6 @@ function getDifference(description, arr1, arr2, long) {
 }
 
 function compareDistance(long, lat) {
-//   console.log(long.length, lat.length);
-//   console.log(long, lat);
   for (let i = 0; i < long.length; i++) {
     for (let j = 0; j < lat.length; j++) {
       console.log(Math.sqrt(long[i] + lat[j]));
