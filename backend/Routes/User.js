@@ -4,13 +4,19 @@ const Users = require("../Models/User.model");
 router.route("/").get((req, res) => {});
 
 router.route("/").post((req, res) => {
-  let body = req.body;
-  // let User = new Users({
-
-  // })
-
   console.log(body);
-  res.status(200).json({ msg: req.body });
+  let newUser = new Users({
+    uniqueIdentifier: req.body.uniqueIdentifier,
+    longitude: req.body.longitude,
+    latitude: req.body.latitude,
+  });
+
+  newUser
+    .save()
+    .then(() => {
+      res.status(201).json({ msg: req.body });
+    })
+    .catch((err) => res.status(500).json("Internal Error"));
 });
 
 module.exports = router;
