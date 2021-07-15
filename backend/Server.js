@@ -9,10 +9,10 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-    var data = req.body;
-    console.log(data);
-    covid_data.push(data);
-    res.send("Data  uploaded");
-  });
-  
+  var data = req.body;
+  console.log(data);
+  covid_data.push(data);
+  res.send("Data  uploaded");
+});
+
 app.listen(8080, () => console.log("Server is running"));
