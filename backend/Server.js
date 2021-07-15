@@ -29,7 +29,7 @@ const Users = require("./Routes/User");
 
 app.get("/", function (req, res) {
   // res.send(covid_data);
-  res.status(200).json({"This is working perfectly"})
+  res.status(200).json("This is working perfectly")
 });
 connectMongoDb();
 
