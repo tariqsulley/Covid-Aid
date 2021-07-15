@@ -28,7 +28,7 @@ function compareDistance(long, lat) {
   for (let i = 0; i < long.length; i++) {
     for (let j = 0; j < lat.length; j++) {
       console.log(Math.sqrt(long[i] + lat[j]));
-      if (Math.sqrt(long[i] + lat[j]) < 0.10) {
+      if (Math.sqrt(long[i] + lat[j]) < 0.001) {
         console.log("You have been in contact with a covid patient");
       } else {
         console.log("You are safe");
