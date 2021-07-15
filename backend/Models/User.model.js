@@ -1,15 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// let userSchema = new Schema({
-//     uniqueIdentifier: String,
-//     longitude: Array,
-//     latitude: Array,
-//     hasCovid: Boolean,
-
-// })
 let userSchema = new Schema({
-    name: String, 
+    uniqueIdentifier: {type: String,},
+    longitude: Array,
+    latitude: Array,
+    hasCovid: {type: Boolean, default: false,},
 })
 
 let Users = mongoose.model("Users", userSchema);
