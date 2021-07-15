@@ -1,8 +1,14 @@
-let long2 = [7.1, 7.123, 7.147];
-let long = [7.152, 7.136, 7.189];
+// let long2 = [7.1, 7.123, 7.147];
+// let long = [7.152, 7.136, 7.189];
 
-let lat1 = [0.005, 0.006, 0.007];
-let lat2 = [0.001, 0.002, 0.003];
+// let lat1 = [0.005, 0.006, 0.007];
+// let lat2 = [0.001, 0.002, 0.003];
+
+let long = [5.614818]
+let lat1 = [-0.205874]
+
+let long2 = [5.666667];
+let lat2 = [0.0000000]
 
 diffLong = [];
 diffLat = [];
@@ -45,4 +51,3 @@ getDifference("longitudinal values", lat1, lat2, true);
 
 compareDistance(diffLong, diffLat);
 console.log(diffLong, diffLat);
-git
