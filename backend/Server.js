@@ -29,6 +29,6 @@ const Users = require("./Routes/User");
 //   res.send(covid_data);
 // });
 
-app.use("users", Users);
 connectMongoDb();
+app.use("users", Users);
 app.listen(8080, () => console.log("Server is running"));
