@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+
 const uri =
   "mongodb+srv://Prince:Prince@cluster0.kresb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 app.use(express.json());
@@ -25,10 +26,17 @@ let connectMongoDb = async () => {
 
 var covid_data = [];
 const Users = require("./Routes/User");
+
 // app.get("/", function (req, res) {
 //   res.send(covid_data);
 // });
+<<<<<<< HEAD
 
 connectMongoDb();
 app.use("users", Users);
+=======
+connectMongoDb();
+
+app.use("/users", Users);
+>>>>>>> 79f3616bfa5f845a381ec94f320b38c6839d07ff
 app.listen(8080, () => console.log("Server is running"));
