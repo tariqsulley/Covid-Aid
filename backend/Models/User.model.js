@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 let userSchema = new Schema({
     uniqueIdentifier: {type: String,},
-    longitude: Array,
-    latitude: Array,
+    longitude: {type: Array},
+    latitude: {type: Array},
     hasCovid: {type: Boolean, default: false,},
 })
 

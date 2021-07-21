@@ -18,5 +18,15 @@ router.route("/").post((req, res) => {
     })
     .catch((err) => res.status(500).json("Internal Error"));
 });
+router.route("/analyse").get((req, res) => {
+  let userData;
+  Users.find().then((data) => {
+    userData = data;
+
+    // Run the diagnosis
+    // res.status(200).json({ msg: userData });
+    
+  });
+});
 
 module.exports = router;
