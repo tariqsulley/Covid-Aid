@@ -8,7 +8,8 @@
 
 ![Covid Info2](https://i.imgur.com/9cWoSbH.png)
 
-![Covid Info4](https://i.imgur.com/XYWYClT.png)
+![Covid Info4](https://i.imgur.com/oWWowEx.png)
 
-![Covid Info5](https://i.imgur.com/oWWowEx.png)
+![Covid Info5](https://i.imgur.com/XYWYClT.png)
+
 
