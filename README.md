@@ -14,4 +14,9 @@
 
 ![Covid Info5](https://i.imgur.com/XYWYClT.png)
 
+![Side Bar](https://i.imgur.com/OYd63Yd.png)
+
+![Help View](https://i.imgur.com/hCxMpcY.png)
+
+
 
