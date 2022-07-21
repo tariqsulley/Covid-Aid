@@ -89,7 +89,7 @@ const TopNav = () => {
               }}
           />
           <Tab.Screen
-              name=" My Trail"
+              name=" My Trails"
               component={Trails}
               options={{
                   tabBarIcon: ({ tintColor }) => (
